@@ -2,8 +2,8 @@
 
 These REST API descriptors can be used for services such as Apigee.  REST services include:
 
-SMSified - http://smsified.com/sms-api-documentation
-Tropo REST API - https://www.tropo.com/docs/rest/rest_api.htm
+* SMSified - http://smsified.com/sms-api-documentation
+* Tropo REST API - https://www.tropo.com/docs/rest/rest_api.htm
 
 = Demo
 
