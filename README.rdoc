@@ -1,0 +1,10 @@
+= Voxeo Labs REST API WADL files
+
+These REST API descriptors can be used for services such as Apigee.  REST services include:
+
+SMSified - http://smsified.com/sms-api-documentation
+Tropo REST API - https://www.tropo.com/docs/rest/rest_api.htm
+
+= Demo
+
+You can check out the Apigee demo online at https://apigee.com/chris4/embed/console/smsified
