@@ -1,0 +1,131 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:apigee="http://api.apigee.com/wadl/2010/07/" 
+  xmlns="http://wadl.dev.java.net/2009/02"
+  xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd"> 
+ 
+  <!-- Base defines the domain and base path of the endpoint --> 
+  <resources base="https://api.smsified.com/v1"> 
+ 
+    <resource path="smsmessaging/outbound/{senderAddress}/requests"> 
+      <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
+
+      <param name="address" required="true" type="xsd:string" style="query" default="1234567890"> 
+        <!-- Docs are optional, but recommended. --> 
+        <doc>Specifies the 10-digit phone number to send the SMS message to.</doc> 
+      </param> 
+ 
+      <!-- If a param is required, specify so. Default values can also be supplied. --> 
+      <param name="message" required="true" type="xsd:string" style="query" default=""> 
+        <doc>Specifies the 160 character SMS message to deliver.</doc> 
+      </param> 
+
+      <param name="notifyURL" required="false" type="xsd:string" style="query" default=""> 
+        <doc>Specifies the URL to call after SMS is sent.</doc> 
+      </param> 
+
+      <!-- Methods should each have a unique id. --> 
+      <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
+      <method id="send_smsmessage" name="POST" apigee:displayName="SendSMS"> 
+ 
+        <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+        <apigee:tags> 
+          <apigee:tag primary="true">SendSMS</apigee:tag> 
+          <apigee:tag>SendSMS</apigee:tag> 
+        </apigee:tags> 
+ 
+        <!-- Is authentication required for this method? --> 
+        <apigee:authentication required="true" /> 
+ 
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+        <apigee:example url="/smsmessaging/outbound/14801234567/requests" /> 
+ 
+        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/sending#sending"> 
+		  Sends a 160 character SMS message from your SMSified phone number to any US mobile number.
+	    </doc> 
+      </method> 
+    </resource>  
+
+    <resource path="smsmessaging/outbound/{senderAddress}/requests/{requestId}/deliveryInfos"> 
+      <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
+
+      <!-- Methods should each have a unique id. --> 
+      <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
+      <method id="delivery_status" name="GET" apigee:displayName="DeliveryStatus"> 
+	
+	    <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+        <apigee:tags> 
+          <apigee:tag primary="true">SendSMS</apigee:tag> 
+          <apigee:tag>DeliveryStatus</apigee:tag> 
+        </apigee:tags> 
+    
+  
+        <!-- Is authentication required for this method? --> 
+        <apigee:authentication required="true" /> 
+ 
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+        <apigee:example url="/smsmessaging/outbound/17177455074/requests/7f90ba9eb9640a5cccfc60a76384cc7e/deliveryInfos" /> 
+ 
+        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/sending#checking_status"> 
+		  If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.
+	    </doc> 
+      </method> 
+    </resource>  
+
+    <resource path="messages"> 
+      <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
+
+      <!-- If a param is required, specify so. Default values can also be supplied. --> 
+      <param name="messageId" required="false" type="xsd:string" style="query" default=""> 
+        <doc>Specifies the message id for datails.</doc> 
+      </param> 
+
+      <param name="startDate" required="false" type="xsd:string" style="query" default="2011-02-14"> 
+        <!-- Docs are optional, but recommended. --> 
+        <doc>2011-02-14</doc> 
+      </param> 
+ 
+      <param name="endDate" required="false" type="xsd:string" style="query" default="2011-02-15"> 
+        <doc>2011-02-15</doc> 
+      </param> 
+
+      <param name="pageSize" required="false" type="xsd:string" style="query" default="50"> 
+        <doc>messages per page</doc> 
+      </param> 
+
+      <param name="pageNumber" required="false" type="xsd:string" style="query" default="0"> 
+        <doc>starting page number (base 0)</doc> 
+      </param> 
+
+      <param name="orderDirection" required="false" type="xsd:string" style="query" default="asc"> 
+        <doc>asc or desc</doc> 
+      </param> 
+
+      <!-- Methods should each have a unique id. --> 
+      <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
+      <method id="reporting" name="POST" apigee:displayName="Reporting"> 
+ 
+        <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+        <apigee:tags> 
+          <apigee:tag primary="true">Reporting</apigee:tag> 
+          <apigee:tag>Query</apigee:tag> 
+        </apigee:tags> 
+ 
+        <!-- Is authentication required for this method? --> 
+        <apigee:authentication required="true" /> 
+ 
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+        <apigee:example url="/messages" /> 
+ 
+        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/reporting"> 
+		  SMSified also provides comprehensive reporting, both through Logs in the user interface and programmatically. Reporting can be used to retrieve information about an individual SMS or multiple SMS messages, using a variety of search and filter criteria such as date range, direction, from, to and status. To start, here's an example showing how to retrieve the information for all messages, with no search criteria or filters.
+	    </doc> 
+      </method> 
+    </resource>  
+
+
+  </resources> 
+</application>
