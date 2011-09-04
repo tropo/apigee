@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application xmlns="http://research.sun.com/wadl/2006/10">
+	<doc xmlns:jersey="http://jersey.dev.java.net/" jersey:generatedBy="Jersey: 1.4 09/11/2010 10:30 PM"/>
+	<resources base="https://api.tropo.com/">
+		<resource path="applications">
+			<method name="POST" id="create">
+				<request>
+					<representation mediaType="application/json"/>
+					<representation mediaType="text/xml"/>
+					<representation mediaType="application/x-www-form-urlencoded"/>
+				</request>
+				<response>
+					<representation mediaType="application/json"/>
+					<representation mediaType="text/xml"/>
+				</response>
+			</method>
+			<method name="GET" id="findAll">
+				<response>
+					<representation mediaType="application/json"/>
+					<representation mediaType="text/xml"/>
+				</response>
+			</method>
+			<resource path="/{applicationId: [0-9]+}">
+				<method name="GET" id="find">
+					<response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response>
+				</method>
+				<method name="DELETE" id="delete">
+					<response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response>
+				</method>
+				<method name="PUT" id="update">
+					<request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+						<representation mediaType="application/x-www-form-urlencoded"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response>
+				</method>
+			</resource>
+			<resource path="/{applicationId: [0-9]+}/addresses">
+				<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="applicationId"/>
+				<method name="POST" id="add">
+					<request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+						<representation mediaType="application/x-www-form-urlencoded"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response>
+				</method>
+				<method name="GET" id="findAll">
+					<response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response>
+				</method>
+				<resource path="/{type}/{value}">
+					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="applicationId"/>
+					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="value"/>
+					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="type"/>
+					<method name="GET" id="find">
+						<response>
+							<representation mediaType="application/json"/>
+							<representation mediaType="text/xml"/>
+						</response>
+					</method>
+					<method name="DELETE" id="delete">
+						<response>
+							<representation mediaType="application/json"/>
+							<representation mediaType="text/xml"/>
+						</response>
+					</method>
+				</resource>
+				<resource path="/{type}">
+					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="type"/>
+					<method name="GET" id="findAll">
+						<response>
+							<representation mediaType="application/json"/>
+							<representation mediaType="text/xml"/>
+						</response>
+					</method>
+				</resource>
+			</resource>
+		</resource>
+	</resources>
+</application>
