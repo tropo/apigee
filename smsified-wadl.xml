@@ -30,7 +30,7 @@
  
         <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
         <apigee:tags> 
-          <apigee:tag primary="true">SMS</apigee:tag> 
+          <apigee:tag primary="true">Outbound SMS</apigee:tag> 
           <apigee:tag>SendSMS</apigee:tag> 
         </apigee:tags> 
  
@@ -56,7 +56,7 @@
 	
 	    <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
         <apigee:tags> 
-          <apigee:tag primary="true">SMS</apigee:tag> 
+          <apigee:tag primary="true">Outbound SMS</apigee:tag> 
           <apigee:tag>DeliveryStatus</apigee:tag> 
         </apigee:tags> 
     
@@ -69,6 +69,208 @@
  
         <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
 	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/sending#checking_status"> 
+		  If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.
+	    </doc> 
+      </method> 
+    </resource>  
+
+	<!-- SET CALLBACK -->
+    <resource path="smsmessaging/outbound/{senderAddress}/requests"> 
+      <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
+
+      <!-- Methods should each have a unique id. --> 
+      <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
+      <method id="set_callback" name="POST" apigee:displayName="SetCallBack"> 
+	
+	    <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+        <apigee:tags> 
+          <apigee:tag primary="true">Outbound SMS</apigee:tag> 
+          <apigee:tag>SetCallBack</apigee:tag> 
+        </apigee:tags> 
+    
+  
+        <!-- Is authentication required for this method? --> 
+        <apigee:authentication required="true" /> 
+ 
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+        <apigee:example url="/smsmessaging/outbound/{senderAddress}/requests" /> 
+ 
+        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/sending#checking_status"> 
+		  If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.
+	    </doc> 
+      </method> 
+    </resource>  
+
+	<!-- OUTBOUND -->
+	<!-- SET SUBSCRIBE -->
+    <resource path="smsmessaging/outbound/{senderAddress}/subscriptions"> 
+      <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
+
+      <!-- Methods should each have a unique id. --> 
+      <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
+      <method id="set_outbound_subscribe" name="POST" apigee:displayName="SetSubscribe"> 
+	
+	    <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+        <apigee:tags> 
+          <apigee:tag primary="true">Outbound SMS</apigee:tag> 
+          <apigee:tag>SetSubscribe</apigee:tag> 
+        </apigee:tags> 
+    
+  
+        <!-- Is authentication required for this method? --> 
+        <apigee:authentication required="true" /> 
+ 
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+        <apigee:example url="/smsmessaging/outbound/{senderAddress}/subscriptions" /> 
+ 
+        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/sending#checking_status"> 
+		  If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.
+	    </doc> 
+      </method> 
+    </resource>  
+
+	<!-- VIEW SUBSCRIBE -->
+    <resource path="smsmessaging/outbound/subscriptions?senderAddress={senderAddress}"> 
+	
+      <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
+
+      <!-- Methods should each have a unique id. --> 
+      <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
+      <method id="view_outbound_subscribe" name="GET" apigee:displayName="ViewSubscribe"> 
+	
+	    <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+        <apigee:tags> 
+          <apigee:tag primary="true">Outbound SMS</apigee:tag> 
+          <apigee:tag>ViewSubscribe</apigee:tag> 
+        </apigee:tags> 
+    
+  
+        <!-- Is authentication required for this method? --> 
+        <apigee:authentication required="true" /> 
+ 
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+        <apigee:example url="/smsmessaging/outbound/subscriptions?senderAddress={senderAddress}" /> 
+ 
+        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/sending#checking_status"> 
+		  If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.
+	    </doc> 
+      </method> 
+    </resource>  
+
+	<!-- DELETE SUBSCRIBE -->
+    <resource path="smsmessaging/outbound/subscriptions/{subscriptionId}"> 
+
+      <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
+
+      <!-- Methods should each have a unique id. --> 
+      <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
+      <method id="delete_outbound_subscribe" name="DELETE" apigee:displayName="DeleteSubscribe"> 
+	
+	    <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+        <apigee:tags> 
+          <apigee:tag primary="true">Outbound SMS</apigee:tag> 
+          <apigee:tag>DeleteSubscribe</apigee:tag> 
+        </apigee:tags> 
+    
+  
+        <!-- Is authentication required for this method? --> 
+        <apigee:authentication required="true" /> 
+ 
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+        <apigee:example url="/smsmessaging/outbound/subscriptions/{subscriptionId}" /> 
+ 
+        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/sending#checking_status"> 
+		  If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.
+	    </doc> 
+      </method> 
+    </resource>  
+
+	<!-- INBOUND -->
+	<!-- SET SUBSCRIBE -->
+    <resource path="smsmessaging/inbound/subscriptions"> 
+      <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
+
+      <!-- Methods should each have a unique id. --> 
+      <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
+      <method id="set_inbound_subscribe" name="POST" apigee:displayName="SetSubscribe"> 
+	
+	    <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+        <apigee:tags> 
+          <apigee:tag primary="true">Inbound SMS</apigee:tag> 
+          <apigee:tag>SetSubscribe</apigee:tag> 
+        </apigee:tags> 
+    
+  
+        <!-- Is authentication required for this method? --> 
+        <apigee:authentication required="true" /> 
+ 
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+        <apigee:example url="/smsmessaging/inbound/subscriptions" /> 
+ 
+        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/receiving"> 
+		  If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.
+	    </doc> 
+      </method> 
+    </resource>  
+
+	<!-- VIEW SUBSCRIBE -->
+    <resource path="smsmessaging/inbound/subscriptions?destinationAddress={destinationAddress}"> 
+	
+      <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
+
+      <!-- Methods should each have a unique id. --> 
+      <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
+      <method id="view_inbound_subscribe" name="GET" apigee:displayName="ViewSubscribe"> 
+	
+	    <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+        <apigee:tags> 
+          <apigee:tag primary="true">Inbound SMS</apigee:tag> 
+          <apigee:tag>ViewSubscribe</apigee:tag> 
+        </apigee:tags> 
+    
+  
+        <!-- Is authentication required for this method? --> 
+        <apigee:authentication required="true" /> 
+ 
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+        <apigee:example url="/smsmessaging/inbound/subscriptions?destinationAddress={destinationAddress}" /> 
+ 
+        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/receiving"> 
+		  If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.
+	    </doc> 
+      </method> 
+    </resource>  
+
+	<!-- DELETE SUBSCRIBE -->
+    <resource path="smsmessaging/inbound/subscriptions/{subscriptionId}"> 
+
+      <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
+
+      <!-- Methods should each have a unique id. --> 
+      <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
+      <method id="delete_inbound_subscribe" name="DELETE" apigee:displayName="DeleteSubscribe"> 
+	
+	    <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+        <apigee:tags> 
+          <apigee:tag primary="true">Inbound SMS</apigee:tag> 
+          <apigee:tag>DeleteSubscribe</apigee:tag> 
+        </apigee:tags> 
+    
+  
+        <!-- Is authentication required for this method? --> 
+        <apigee:authentication required="true" /> 
+ 
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+        <apigee:example url="/smsmessaging/inbound/subscriptions/{subscriptionId}" /> 
+ 
+        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/receiving"> 
 		  If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.
 	    </doc> 
       </method> 
