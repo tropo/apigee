@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<application xmlns="http://research.sun.com/wadl/2006/10">
-	<doc xmlns:jersey="http://jersey.dev.java.net/" jersey:generatedBy="Jersey: 1.4 09/11/2010 10:30 PM"/>
-	<resources base="https://api.tropo.com/">
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:apigee="http://api.apigee.com/wadl/2010/07/" 
+  xmlns="http://wadl.dev.java.net/2009/02"
+  xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+	
+	<resources base="https://api.tropo.com/v1">
 		<resource path="applications">
-			<method name="POST" id="create">
+			<method name="POST" id="application_create" apigee:displayName="Create">
 				<request>
 					<representation mediaType="application/json"/>
 					<representation mediaType="text/xml"/>
@@ -13,27 +16,91 @@
 					<representation mediaType="application/json"/>
 					<representation mediaType="text/xml"/>
 				</response>
+				<!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+		        <apigee:tags> 
+		          <apigee:tag primary="true">Applications</apigee:tag> 
+		          <apigee:tag>Create</apigee:tag> 
+		        </apigee:tags> 
+
+		        <!-- Is authentication required for this method? --> 
+		        <apigee:authentication required="true" /> 
+
+		        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+		        <apigee:example url="/applications" /> 
+
+		        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+			    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_new_app.htm"> 
+				  Use this method to add a brand new application. You can define a voice and messaging URL in the Request Body, but this method won't assign any addresses. You'll need to update the application once it's created to add a phone number or IM account.
+			    </doc>
 			</method>
-			<method name="GET" id="findAll">
+			<method name="GET" id="application_findAll" apigee:displayName="ViewAll">
 				<response>
 					<representation mediaType="application/json"/>
 					<representation mediaType="text/xml"/>
 				</response>
+				<apigee:tags> 
+		          <apigee:tag primary="true">Applications</apigee:tag> 
+		          <apigee:tag>ViewAll</apigee:tag> 
+		        </apigee:tags> 
+
+		        <!-- Is authentication required for this method? --> 
+		        <apigee:authentication required="true" /> 
+
+		        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+		        <apigee:example url="/applications" /> 
+
+		        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+			    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_view_apps.htm"> 
+				  Sometimes you need to access a list of the applications associated with your account; maybe you need to find a particular application's ID number or need to verify whether it's a Scripting or WebAPI application. Using a GET on the applications folder will provide you with the information you need.
+			    </doc>
+		        
 			</method>
-			<resource path="/{applicationId: [0-9]+}">
-				<method name="GET" id="find">
+			<!-- <resource path="/{applicationId: [0-9]+}"> -->
+				<method name="GET" id="application_find" apigee:displayName="ViewApp">
 					<response>
 						<representation mediaType="application/json"/>
 						<representation mediaType="text/xml"/>
 					</response>
+					<apigee:tags> 
+			          <apigee:tag primary="true">Applications</apigee:tag> 
+			          <apigee:tag>ViewApp</apigee:tag> 
+			        </apigee:tags> 
+
+			        <!-- Is authentication required for this method? --> 
+			        <apigee:authentication required="true" /> 
+
+			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+			        <apigee:example url="/applications/{AppId}" /> 
+
+			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_view_apps.htm"> 
+					  Sometimes you need to access a list a specific application.
+				    </doc>
+					
 				</method>
-				<method name="DELETE" id="delete">
+				<method name="DELETE" id="application_delete" apigee:displayName="Delete">
 					<response>
 						<representation mediaType="application/json"/>
 						<representation mediaType="text/xml"/>
 					</response>
+					<apigee:tags> 
+			          <apigee:tag primary="true">Applications</apigee:tag> 
+			          <apigee:tag>Delete</apigee:tag> 
+			        </apigee:tags> 
+
+			        <!-- Is authentication required for this method? --> 
+			        <apigee:authentication required="true" /> 
+
+			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+			        <apigee:example url="/applications/{AppId}" /> 
+
+			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_deleting_app.htm"> 
+					  Use this method to remove an application. This cannot be undone; once an application has been deleted, it cannot be restored without recreating it from scratch.
+				    </doc>
+					
 				</method>
-				<method name="PUT" id="update">
+				<method name="PUT" id="application_update" apigee:displayName="Update">
 					<request>
 						<representation mediaType="application/json"/>
 						<representation mediaType="text/xml"/>
@@ -43,54 +110,23 @@
 						<representation mediaType="application/json"/>
 						<representation mediaType="text/xml"/>
 					</response>
+					<apigee:tags> 
+			          <apigee:tag primary="true">Applications</apigee:tag> 
+			          <apigee:tag>Update</apigee:tag> 
+			        </apigee:tags> 
+
+			        <!-- Is authentication required for this method? --> 
+			        <apigee:authentication required="true" /> 
+
+			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+			        <apigee:example url="/applications/{AppId}" /> 
+
+			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_update_name.htm"> 
+					  When you want to change the name, platform or partition of an application, just run a PUT on the application specific folder and specify the new details. The old information will be removed and the new information entered in its place. Note that if you do not have a production Tropo account, you will not be able to change the partition to production.
+				    </doc>
+					
 				</method>
 			</resource>
-			<resource path="/{applicationId: [0-9]+}/addresses">
-				<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="applicationId"/>
-				<method name="POST" id="add">
-					<request>
-						<representation mediaType="application/json"/>
-						<representation mediaType="text/xml"/>
-						<representation mediaType="application/x-www-form-urlencoded"/>
-					</request>
-					<response>
-						<representation mediaType="application/json"/>
-						<representation mediaType="text/xml"/>
-					</response>
-				</method>
-				<method name="GET" id="findAll">
-					<response>
-						<representation mediaType="application/json"/>
-						<representation mediaType="text/xml"/>
-					</response>
-				</method>
-				<resource path="/{type}/{value}">
-					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="applicationId"/>
-					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="value"/>
-					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="type"/>
-					<method name="GET" id="find">
-						<response>
-							<representation mediaType="application/json"/>
-							<representation mediaType="text/xml"/>
-						</response>
-					</method>
-					<method name="DELETE" id="delete">
-						<response>
-							<representation mediaType="application/json"/>
-							<representation mediaType="text/xml"/>
-						</response>
-					</method>
-				</resource>
-				<resource path="/{type}">
-					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="type"/>
-					<method name="GET" id="findAll">
-						<response>
-							<representation mediaType="application/json"/>
-							<representation mediaType="text/xml"/>
-						</response>
-					</method>
-				</resource>
-			</resource>
-		</resource>
 	</resources>
 </application>
