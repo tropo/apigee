@@ -7,7 +7,7 @@
 	<resources base="https://api.tropo.com/v1">
 		<resource path="applications">
 			<method name="POST" id="application_create" apigee:displayName="Create">
-				<request>
+				<!-- <request>
 					<representation mediaType="application/json"/>
 					<representation mediaType="text/xml"/>
 					<representation mediaType="application/x-www-form-urlencoded"/>
@@ -15,7 +15,7 @@
 				<response>
 					<representation mediaType="application/json"/>
 					<representation mediaType="text/xml"/>
-				</response>
+				</response> -->
 				<!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
 		        <apigee:tags> 
 		          <apigee:tag primary="true">Applications</apigee:tag> 
@@ -34,10 +34,10 @@
 			    </doc>
 			</method>
 			<method name="GET" id="application_findAll" apigee:displayName="ViewAll">
-				<response>
+				<!-- <response>
 					<representation mediaType="application/json"/>
 					<representation mediaType="text/xml"/>
-				</response>
+				</response> -->
 				<apigee:tags> 
 		          <apigee:tag primary="true">Applications</apigee:tag> 
 		          <apigee:tag>ViewAll</apigee:tag> 
@@ -57,10 +57,10 @@
 			</method>
 			<!-- <resource path="/{applicationId: [0-9]+}"> -->
 				<method name="GET" id="application_find" apigee:displayName="ViewApp">
-					<response>
+					<!-- <response>
 						<representation mediaType="application/json"/>
 						<representation mediaType="text/xml"/>
-					</response>
+					</response> -->
 					<apigee:tags> 
 			          <apigee:tag primary="true">Applications</apigee:tag> 
 			          <apigee:tag>ViewApp</apigee:tag> 
@@ -79,10 +79,10 @@
 					
 				</method>
 				<method name="DELETE" id="application_delete" apigee:displayName="Delete">
-					<response>
+					<!-- <response>
 						<representation mediaType="application/json"/>
 						<representation mediaType="text/xml"/>
-					</response>
+					</response> -->
 					<apigee:tags> 
 			          <apigee:tag primary="true">Applications</apigee:tag> 
 			          <apigee:tag>Delete</apigee:tag> 
@@ -101,7 +101,7 @@
 					
 				</method>
 				<method name="PUT" id="application_update" apigee:displayName="Update">
-					<request>
+					<!-- <request>
 						<representation mediaType="application/json"/>
 						<representation mediaType="text/xml"/>
 						<representation mediaType="application/x-www-form-urlencoded"/>
@@ -109,7 +109,7 @@
 					<response>
 						<representation mediaType="application/json"/>
 						<representation mediaType="text/xml"/>
-					</response>
+					</response> -->
 					<apigee:tags> 
 			          <apigee:tag primary="true">Applications</apigee:tag> 
 			          <apigee:tag>Update</apigee:tag> 
@@ -128,5 +128,109 @@
 					
 				</method>
 			</resource>
+			<resource path="/{applicationId: [0-9]+}/addresses">
+				<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="applicationId"/>
+				<method name="POST" id="address_add" apigee:displayName="Add">
+					<!-- <request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+						<representation mediaType="application/x-www-form-urlencoded"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response> -->
+					<apigee:tags> 
+			          <apigee:tag primary="true">Addresses</apigee:tag> 
+			          <apigee:tag>Add</apigee:tag> 
+			        </apigee:tags> 
+
+			        <!-- Is authentication required for this method? --> 
+			        <apigee:authentication required="true" /> 
+
+			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+			        <apigee:example url="/applications/{AppId}/addresses" /> 
+
+			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_add_number.htm"> 
+					  This method will add a number to the application, based on a specified prefix. While the prefix is not necessary, if it's omitted you will be provisioned a randomly selected U.S. number.
+				    </doc>
+					
+				</method>
+				<method name="GET" id="address_findAll" apigee:displayName="ViewAll">
+					<!-- <response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response> -->
+					<apigee:tags> 
+			          <apigee:tag primary="true">Addresses</apigee:tag> 
+			          <apigee:tag>ViewAll</apigee:tag> 
+			        </apigee:tags> 
+
+			        <!-- Is authentication required for this method? --> 
+			        <apigee:authentication required="true" /> 
+
+			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+			        <apigee:example url="/applications/{AppId}/addresses" /> 
+
+			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_view_app_addresses.htm"> 
+					  	Sometimes you'll need to view all the addresses associated with a specific application. Using a GET on the addresses folder will provide you with the information you need; running a GET on a specific address type folder, such as addresses/number or addresses/aim, will get you a list of all the addresses that match that type for this application.
+					
+				    </doc>
+					
+				</method>
+				<!-- <resource path="/{type}/{value}">
+					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="applicationId"/>
+					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="value"/>
+					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="type"/> -->
+					<method name="GET" id="address_find" apigee:displayName="ViewAddress">
+						<!-- <response>
+							<representation mediaType="application/json"/>
+							<representation mediaType="text/xml"/>
+						</response> -->
+						<apigee:tags> 
+				          <apigee:tag primary="true">Addresses</apigee:tag> 
+				          <apigee:tag>ViewAddress</apigee:tag> 
+				        </apigee:tags> 
+
+				        <!-- Is authentication required for this method? --> 
+				        <apigee:authentication required="true" /> 
+
+				        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+				        <apigee:example url="/applications/{AppId}/addresses/{AddressId}" /> 
+
+				        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+					    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_view_app_addresses.htm"> 
+						  	Sometimes you'll need to view all the addresses associated with a specific application. Using a GET on the addresses folder will provide you with the information you need; running a GET on a specific address type folder, such as addresses/number or addresses/aim, will get you a list of all the addresses that match that type for this application.
+
+					    </doc>
+						
+					</method>
+					<method name="DELETE" id="address_delete" apigee:displayName="Delete">
+						<!-- <response>
+							<representation mediaType="application/json"/>
+							<representation mediaType="text/xml"/>
+						</response> -->
+						<apigee:tags> 
+				          <apigee:tag primary="true">Addresses</apigee:tag> 
+				          <apigee:tag>Delete</apigee:tag> 
+				        </apigee:tags> 
+
+				        <!-- Is authentication required for this method? --> 
+				        <apigee:authentication required="true" /> 
+
+				        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+				        <apigee:example url="/applications/{AppId}/addresses/number/{AddressId}" /> 
+
+				        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+					    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_delete_address.htm"> 
+						  	You can remove a phone number, IM account or token from an application. If you remove a phone number, it will become available for use by someone else, so it's not recommended to delete a phone number unless you're absolutely sure you have no further need for it. If you want to move a phone number between applications, there's an easier way. Check out the Adding a Specific Number/Moving a Number> example for more info.
+					    </doc>
+						
+					</method>
+				<!-- </resource> -->
+			<!-- </resource> -->
+		</resource>
 	</resources>
 </application>
