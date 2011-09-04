@@ -276,6 +276,7 @@
       </method> 
     </resource>  
 
+	<!-- REPORTING ALL MESSAGES -->
     <resource path="messages"> 
       <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
 
@@ -307,12 +308,12 @@
 
       <!-- Methods should each have a unique id. --> 
       <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
-      <method id="reporting" name="GET" apigee:displayName="Reporting"> 
+      <method id="reporting_allmessages" name="GET" apigee:displayName="AllMessages"> 
  
         <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
         <apigee:tags> 
           <apigee:tag primary="true">Reporting</apigee:tag> 
-          <apigee:tag>Query</apigee:tag> 
+          <apigee:tag>AllMessages</apigee:tag> 
         </apigee:tags> 
  
         <!-- Is authentication required for this method? --> 
@@ -320,6 +321,59 @@
  
         <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
         <apigee:example url="/messages" /> 
+ 
+        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/reporting"> 
+		  SMSified also provides comprehensive reporting, both through Logs in the user interface and programmatically. Reporting can be used to retrieve information about an individual SMS or multiple SMS messages, using a variety of search and filter criteria such as date range, direction, from, to and status. To start, here's an example showing how to retrieve the information for all messages, with no search criteria or filters.
+	    </doc> 
+      </method> 
+    </resource>  
+
+	<!-- REPORTING INDIVIDUAL MESSAGE -->
+    <resource path="messages/{messageId}"> 
+      <!-- Resources that are the same but have multiple verbs can have multiple method items in the WADL. --> 
+
+      <!-- If a param is required, specify so. Default values can also be supplied. --> 
+      <param name="messageId" required="false" type="xsd:string" style="query" default=""> 
+        <doc>Specifies the message id for datails.</doc> 
+      </param> 
+
+      <param name="startDate" required="false" type="xsd:string" style="query" default="2011-02-14"> 
+        <!-- Docs are optional, but recommended. --> 
+        <doc>2011-02-14</doc> 
+      </param> 
+ 
+      <param name="endDate" required="false" type="xsd:string" style="query" default="2011-02-15"> 
+        <doc>2011-02-15</doc> 
+      </param> 
+
+      <param name="pageSize" required="false" type="xsd:string" style="query" default="50"> 
+        <doc>messages per page</doc> 
+      </param> 
+
+      <param name="pageNumber" required="false" type="xsd:string" style="query" default="0"> 
+        <doc>starting page number (base 0)</doc> 
+      </param> 
+
+      <param name="orderDirection" required="false" type="xsd:string" style="query" default="asc"> 
+        <doc>asc or desc</doc> 
+      </param> 
+
+      <!-- Methods should each have a unique id. --> 
+      <!-- The attribute displayName can be used to control the name that appears in the list in the Console. --> 
+      <method id="reporting_individual" name="GET" apigee:displayName="IndividualMessage"> 
+ 
+        <!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
+        <apigee:tags> 
+          <apigee:tag primary="true">Reporting</apigee:tag> 
+          <apigee:tag>IndividualMessage</apigee:tag> 
+        </apigee:tags> 
+ 
+        <!-- Is authentication required for this method? --> 
+        <apigee:authentication required="true" /> 
+ 
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+        <apigee:example url="/messages/{messageId}" /> 
  
         <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
 	    <doc title="" apigee:url="http://smsified.com/sms-api-documentation/reporting"> 
