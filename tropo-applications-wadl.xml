@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?> 
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns:apigee="http://api.apigee.com/wadl/2010/07/" 
@@ -7,15 +8,6 @@
 	<resources base="https://api.tropo.com/v1">
 		<resource path="applications">
 			<method name="POST" id="application_create" apigee:displayName="Create">
-				<!-- <request>
-					<representation mediaType="application/json"/>
-					<representation mediaType="text/xml"/>
-					<representation mediaType="application/x-www-form-urlencoded"/>
-				</request>
-				<response>
-					<representation mediaType="application/json"/>
-					<representation mediaType="text/xml"/>
-				</response> -->
 				<!-- Tags are used to organize the list of methods. Primary tag will list the default placement. --> 
 		        <apigee:tags> 
 		          <apigee:tag primary="true">Applications</apigee:tag> 
@@ -28,16 +20,38 @@
 		        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
 		        <apigee:example url="/applications" /> 
 
-		        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
-			    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_new_app.htm"> 
-				  Use this method to add a brand new application. You can define a voice and messaging URL in the Request Body, but this method won't assign any addresses. You'll need to update the application once it's created to add a phone number or IM account.
-			    </doc>
-			</method>
-			<method name="GET" id="application_findAll" apigee:displayName="ViewAll">
-				<!-- <response>
+				<!-- <request>
+					<representation mediaType="application/json"/>
+					<representation mediaType="text/xml"/>
+					<representation mediaType="application/x-www-form-urlencoded"/>
+				</request>
+				<response>
 					<representation mediaType="application/json"/>
 					<representation mediaType="text/xml"/>
 				</response> -->
+				
+				<!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+			    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_new_app.htm"> 
+				  Use this method to add a brand new application. You can define a voice and messaging URL in the Request Body, but this method won't assign any addresses. You'll need to update the application once it's created to add a phone number or IM account.
+			    </doc>		        
+				
+               <request>
+                   <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
+                   <representation>
+                       <apigee:payload><![CDATA[
+						{
+						    "name":"new app",
+						    "voiceUrl":"http://website.com",
+						    "messagingUrl":"http://website2.com",
+						    "platform":"scripting",
+						    "partition":"staging"
+						}
+                  ]]></apigee:payload>
+                   </representation>
+               </request>				
+
+			</method>
+			<method name="GET" id="application_findAll" apigee:displayName="ViewAll">
 				<apigee:tags> 
 		          <apigee:tag primary="true">Applications</apigee:tag> 
 		          <apigee:tag>ViewAll</apigee:tag> 
@@ -49,6 +63,11 @@
 		        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
 		        <apigee:example url="/applications" /> 
 
+				<!-- <response>
+					<representation mediaType="application/json"/>
+					<representation mediaType="text/xml"/>
+				</response> -->
+
 		        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
 			    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_view_apps.htm"> 
 				  Sometimes you need to access a list of the applications associated with your account; maybe you need to find a particular application's ID number or need to verify whether it's a Scripting or WebAPI application. Using a GET on the applications folder will provide you with the information you need.
@@ -57,10 +76,6 @@
 			</method>
 			<!-- <resource path="/{applicationId: [0-9]+}"> -->
 				<method name="GET" id="application_find" apigee:displayName="ViewApp">
-					<!-- <response>
-						<representation mediaType="application/json"/>
-						<representation mediaType="text/xml"/>
-					</response> -->
 					<apigee:tags> 
 			          <apigee:tag primary="true">Applications</apigee:tag> 
 			          <apigee:tag>ViewApp</apigee:tag> 
@@ -72,6 +87,11 @@
 			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
 			        <apigee:example url="/applications/{AppId}" /> 
 
+					<!-- <response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response> -->
+
 			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
 				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_view_apps.htm"> 
 					  Sometimes you need to access a list a specific application.
@@ -79,10 +99,6 @@
 					
 				</method>
 				<method name="DELETE" id="application_delete" apigee:displayName="Delete">
-					<!-- <response>
-						<representation mediaType="application/json"/>
-						<representation mediaType="text/xml"/>
-					</response> -->
 					<apigee:tags> 
 			          <apigee:tag primary="true">Applications</apigee:tag> 
 			          <apigee:tag>Delete</apigee:tag> 
@@ -94,6 +110,11 @@
 			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
 			        <apigee:example url="/applications/{AppId}" /> 
 
+					<!-- <response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response> -->
+
 			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
 				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_deleting_app.htm"> 
 					  Use this method to remove an application. This cannot be undone; once an application has been deleted, it cannot be restored without recreating it from scratch.
@@ -101,15 +122,6 @@
 					
 				</method>
 				<method name="PUT" id="application_update" apigee:displayName="Update">
-					<!-- <request>
-						<representation mediaType="application/json"/>
-						<representation mediaType="text/xml"/>
-						<representation mediaType="application/x-www-form-urlencoded"/>
-					</request>
-					<response>
-						<representation mediaType="application/json"/>
-						<representation mediaType="text/xml"/>
-					</response> -->
 					<apigee:tags> 
 			          <apigee:tag primary="true">Applications</apigee:tag> 
 			          <apigee:tag>Update</apigee:tag> 
@@ -121,16 +133,6 @@
 			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
 			        <apigee:example url="/applications/{AppId}" /> 
 
-			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
-				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_update_name.htm"> 
-					  When you want to change the name, platform or partition of an application, just run a PUT on the application specific folder and specify the new details. The old information will be removed and the new information entered in its place. Note that if you do not have a production Tropo account, you will not be able to change the partition to production.
-				    </doc>
-					
-				</method>
-			</resource>
-			<resource path="/{applicationId: [0-9]+}/addresses">
-				<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="applicationId"/>
-				<method name="POST" id="address_add" apigee:displayName="Add">
 					<!-- <request>
 						<representation mediaType="application/json"/>
 						<representation mediaType="text/xml"/>
@@ -140,9 +142,34 @@
 						<representation mediaType="application/json"/>
 						<representation mediaType="text/xml"/>
 					</response> -->
+
+			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_update_name.htm"> 
+					  When you want to change the name, platform or partition of an application, just run a PUT on the application specific folder and specify the new details. The old information will be removed and the new information entered in its place. Note that if you do not have a production Tropo account, you will not be able to change the partition to production.
+				    </doc>
+				
+					<request>
+	                   <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
+	                   <representation>
+	                       <apigee:payload><![CDATA[
+							{
+							"name":"new app updated",
+							"platform":"webapi",
+							"partition":"production"
+							}
+	                  ]]></apigee:payload>
+	                   </representation>
+	               </request>				
+	               
+	
+				</method>
+			</resource>
+			<resource path="/applications/{AppId}/addresses">
+				<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="applicationId"/>
+				<method name="POST" id="address_addprefix" apigee:displayName="AddNumberByPrefix">
 					<apigee:tags> 
 			          <apigee:tag primary="true">Addresses</apigee:tag> 
-			          <apigee:tag>Add</apigee:tag> 
+			          <apigee:tag>AddNumberByPrefix</apigee:tag> 
 			        </apigee:tags> 
 
 			        <!-- Is authentication required for this method? --> 
@@ -151,17 +178,246 @@
 			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
 			        <apigee:example url="/applications/{AppId}/addresses" /> 
 
+					<!-- <request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+						<representation mediaType="application/x-www-form-urlencoded"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response> -->
+
 			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
 				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_add_number.htm"> 
 					  This method will add a number to the application, based on a specified prefix. While the prefix is not necessary, if it's omitted you will be provisioned a randomly selected U.S. number.
 				    </doc>
+				
+					<request>
+	                   <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
+	                   <representation>
+	                       <apigee:payload><![CDATA[
+							{
+							    "type":"number",
+							    "prefix":"1407"
+							}
+	                  ]]></apigee:payload>
+	                   </representation>
+	               </request>				
+				
 					
 				</method>
-				<method name="GET" id="address_findAll" apigee:displayName="ViewAll">
-					<!-- <response>
+				<method name="POST" id="address_addtollfree" apigee:displayName="AddNumberTollfree">
+					<apigee:tags> 
+			          <apigee:tag primary="true">Addresses</apigee:tag> 
+			          <apigee:tag>AddNumberTollfree</apigee:tag> 
+			        </apigee:tags> 
+
+			        <!-- Is authentication required for this method? --> 
+			        <apigee:authentication required="true" /> 
+
+			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+			        <apigee:example url="/applications/{AppId}/addresses" /> 
+
+					<!-- <request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+						<representation mediaType="application/x-www-form-urlencoded"/>
+					</request>
+					<response>
 						<representation mediaType="application/json"/>
 						<representation mediaType="text/xml"/>
 					</response> -->
+
+			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_add_toll_free.htm"> 
+					  	This method will add a toll free number to the application, based on a specified prefix. This is essentially the same process as the one you would use to add a standard U.S. phone number , however you must already having billing setup for Tropo or you will receive a 400 response code, as all toll free numbers require a production account.
+
+						Possible values include 855, 866, 877 and 888; if there are no available numbers with the prefix specified, you will receive a 503 response code, at which point you can try one of the other options.
+				    </doc>
+				
+					<request>
+	                   <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
+	                   <representation>
+	                       <apigee:payload><![CDATA[
+							{
+							    "type":"number",
+							    "prefix":"1866"
+							}
+	                  ]]></apigee:payload>
+	                   </representation>
+	               </request>				
+				
+					
+				</method>
+				<method name="POST" id="address_addintl" apigee:displayName="AddNumberInternational">
+					<apigee:tags> 
+			          <apigee:tag primary="true">Addresses</apigee:tag> 
+			          <apigee:tag>AddNumberInternational</apigee:tag> 
+			        </apigee:tags> 
+
+			        <!-- Is authentication required for this method? --> 
+			        <apigee:authentication required="true" /> 
+
+			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+			        <apigee:example url="/applications/{AppId}/addresses" /> 
+
+					<!-- <request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+						<representation mediaType="application/x-www-form-urlencoded"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response> -->
+
+			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_add_international.htm"> 
+					  	This method will add an international number, based on a specified country code prefix. Currently, you cannot select a specific area code prefix for International numbers, just the country code (so you can't select 31+20 for Amsterdam - you might get 31+10 for Rotterdam instead).
+
+						If there are no available numbers with the prefix specified, you will receive a 503 response code.
+				    </doc>
+				
+					<request>
+	                   <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
+	                   <representation>
+	                       <apigee:payload><![CDATA[
+							{
+							    "type":"number",
+							    "prefix":"31"
+							}
+	                  ]]></apigee:payload>
+	                   </representation>
+	               </request>				
+				
+					
+				</method>
+				<method name="POST" id="address_addspecific" apigee:displayName="AddNumberSpecific">
+					<apigee:tags> 
+			          <apigee:tag primary="true">Addresses</apigee:tag> 
+			          <apigee:tag>AddNumberSpecific</apigee:tag> 
+			        </apigee:tags> 
+
+			        <!-- Is authentication required for this method? --> 
+			        <apigee:authentication required="true" /> 
+
+			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+			        <apigee:example url="/applications/{AppId}/addresses" /> 
+
+					<!-- <request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+						<representation mediaType="application/x-www-form-urlencoded"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response> -->
+
+			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_add_specific_num.htm"> 
+					  The ability to add a specific number is really only used when you need to move a number from one application to another. You would use this method on the destination application - the one where you want the phone number to go. You don't need to do anything to the original application. The two applications do need to exist on the same account - you can't use this method to move a phone number between two different accounts.
+				    </doc>
+				
+					<request>
+	                   <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
+	                   <representation>
+	                       <apigee:payload><![CDATA[
+							{
+							    "type":"number",
+							    "number":"4075551235"
+							}
+	                  ]]></apigee:payload>
+	                   </representation>
+	               </request>				
+				
+					
+				</method>
+				<method name="POST" id="address_addim" apigee:displayName="AddIM">
+					<apigee:tags> 
+			          <apigee:tag primary="true">Addresses</apigee:tag> 
+			          <apigee:tag>AddIM</apigee:tag> 
+			        </apigee:tags> 
+
+			        <!-- Is authentication required for this method? --> 
+			        <apigee:authentication required="true" /> 
+
+			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+			        <apigee:example url="/applications/{AppId}/addresses" /> 
+
+					<!-- <request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+						<representation mediaType="application/x-www-form-urlencoded"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response> -->
+
+			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_add_im.htm"> 
+					  This method will show how to add an IM account to your application - we'll use AIM as our example. The same method can be used to add YAHOO, MSN, JABBER, GTALK and SKYPE - just change the value in type.
+				    </doc>
+				
+					<request>
+	                   <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
+	                   <representation>
+	                       <apigee:payload><![CDATA[
+							{
+							    "type":"aim",
+							    "username":"tropocloud",
+							    "password":"password01"
+							}
+	                  ]]></apigee:payload>
+	                   </representation>
+	               </request>				
+				
+					
+				</method>
+				<method name="POST" id="address_addtoken" apigee:displayName="AddToken">
+					<apigee:tags> 
+			          <apigee:tag primary="true">Addresses</apigee:tag> 
+			          <apigee:tag>AddToken</apigee:tag> 
+			        </apigee:tags> 
+
+			        <!-- Is authentication required for this method? --> 
+			        <apigee:authentication required="true" /> 
+
+			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+			        <apigee:example url="/applications/{AppId}/addresses" /> 
+
+					<!-- <request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+						<representation mediaType="application/x-www-form-urlencoded"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response> -->
+
+			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_add_token.htm"> 
+					  This example will add a voice token to your application; you can add a messaging token just by changing the channel to "messaging" instead of "voice".
+				    </doc>
+				
+					<request>
+	                   <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
+	                   <representation>
+	                       <apigee:payload><![CDATA[
+							{
+							    "type":"token",
+							    "channel":"voice"
+							}
+	                  ]]></apigee:payload>
+	                   </representation>
+	               </request>				
+				
+					
+				</method>
+				<method name="GET" id="address_findAll" apigee:displayName="ViewAll">
 					<apigee:tags> 
 			          <apigee:tag primary="true">Addresses</apigee:tag> 
 			          <apigee:tag>ViewAll</apigee:tag> 
@@ -172,6 +428,11 @@
 
 			        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
 			        <apigee:example url="/applications/{AppId}/addresses" /> 
+
+					<!-- <response>
+						<representation mediaType="application/json"/>
+						<representation mediaType="text/xml"/>
+					</response> -->
 
 			        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
 				    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_view_app_addresses.htm"> 
@@ -185,10 +446,6 @@
 					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="value"/>
 					<param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="type"/> -->
 					<method name="GET" id="address_find" apigee:displayName="ViewAddress">
-						<!-- <response>
-							<representation mediaType="application/json"/>
-							<representation mediaType="text/xml"/>
-						</response> -->
 						<apigee:tags> 
 				          <apigee:tag primary="true">Addresses</apigee:tag> 
 				          <apigee:tag>ViewAddress</apigee:tag> 
@@ -198,7 +455,12 @@
 				        <apigee:authentication required="true" /> 
 
 				        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
-				        <apigee:example url="/applications/{AppId}/addresses/{AddressId}" /> 
+				        <apigee:example url="/applications/{AppId}/addresses/number/{AddressId}" /> 
+
+						<!-- <response>
+							<representation mediaType="application/json"/>
+							<representation mediaType="text/xml"/>
+						</response> -->
 
 				        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
 					    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_view_app_addresses.htm"> 
@@ -208,10 +470,6 @@
 						
 					</method>
 					<method name="DELETE" id="address_delete" apigee:displayName="Delete">
-						<!-- <response>
-							<representation mediaType="application/json"/>
-							<representation mediaType="text/xml"/>
-						</response> -->
 						<apigee:tags> 
 				          <apigee:tag primary="true">Addresses</apigee:tag> 
 				          <apigee:tag>Delete</apigee:tag> 
@@ -223,6 +481,11 @@
 				        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
 				        <apigee:example url="/applications/{AppId}/addresses/number/{AddressId}" /> 
 
+						<!-- <response>
+							<representation mediaType="application/json"/>
+							<representation mediaType="text/xml"/>
+						</response> -->
+
 				        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
 					    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_delete_address.htm"> 
 						  	You can remove a phone number, IM account or token from an application. If you remove a phone number, it will become available for use by someone else, so it's not recommended to delete a phone number unless you're absolutely sure you have no further need for it. If you want to move a phone number between applications, there's an easier way. Check out the Adding a Specific Number/Moving a Number> example for more info.
@@ -232,5 +495,112 @@
 				<!-- </resource> -->
 			<!-- </resource> -->
 		</resource>
+		<resource path="exchanges">
+			<method name="GET" id="address_viewexchanges" apigee:displayName="ViewExchanges">
+				<apigee:tags> 
+		          <apigee:tag primary="true">Exchanges</apigee:tag> 
+		          <apigee:tag>ViewExchanges</apigee:tag> 
+		        </apigee:tags> 
+
+		        <!-- Is authentication required for this method? --> 
+		        <apigee:authentication required="true" /> 
+
+		        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+		        <apigee:example url="/exchanges" /> 
+
+				<!-- <response>
+					<representation mediaType="application/json"/>
+					<representation mediaType="text/xml"/>
+				</response> -->
+
+		        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+			    <doc title="" apigee:url="https://www.tropo.com/docs/rest/prov_view_exchanges.htm"> 
+				  	Exchanges identify the locations and prefixes for phone numbers; using the following method will allow you to view the exchanges available to you (e.g., if you're still in staging, toll free numbers won't be displayed). The results are abbreviated for ease of viewing; there's typically many, many more available.
+					
+			    </doc>
+				
+			</method>
+		</resource>
+
+		<resource path="sessions">
+			<method name="POST" id="session_start" apigee:displayName="Start">
+				<apigee:tags> 
+		          <apigee:tag primary="true">Sessions</apigee:tag> 
+		          <apigee:tag>Start</apigee:tag> 
+		        </apigee:tags> 
+
+		        <!-- Is authentication required for this method? --> 
+		        <apigee:authentication required="true" /> 
+
+		        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+		        <apigee:example url="/sessions" /> 
+
+				<!-- <response>
+					<representation mediaType="application/json"/>
+					<representation mediaType="text/xml"/>
+				</response> -->
+
+		        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+			    <doc title="" apigee:url="https://www.tropo.com/docs/rest/starting_session.htm"> 
+				  	The following example shows how to kick off an "outbound session" using a token and the REST API, which then launches the application, makes a call and plays a message. It will also show how to pass additional parameters into your application when initiating the Tropo Scripting session. To find your token, login to your Tropo account, display the application configuration screen, and look down under the phone numbers
+					
+			    </doc>
+			
+					<request>
+	                   <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
+	                   <representation>
+	                       <apigee:payload><![CDATA[
+							{
+							    "token":"TOKEN",
+							    "customerName":"Chris Matthieu",
+							    "numberToDial":"4075551212",
+							    "msg":"hello superman."
+							}
+	                  ]]></apigee:payload>
+	                   </representation>
+	               </request>				
+			
+				
+			</method>
+			<method name="POST" id="session_interrupt" apigee:displayName="Interrupt">
+				<apigee:tags> 
+		          <apigee:tag primary="true">Sessions</apigee:tag> 
+		          <apigee:tag>Interrupt</apigee:tag> 
+		        </apigee:tags> 
+
+		        <!-- Is authentication required for this method? --> 
+		        <apigee:authentication required="true" /> 
+
+		        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. --> 
+		        <apigee:example url="/sessions/{session-id}/signals" /> 
+
+				<!-- <response>
+					<representation mediaType="application/json"/>
+					<representation mediaType="text/xml"/>
+				</response> -->
+
+		        <!-- The content of the doc element is shown as a tooltip in the Console's method list. --> 
+			    <doc title="" apigee:url="https://www.tropo.com/docs/rest/interrupting_code_one_signal.htm"> 
+				  	Say you want to play some hold music, then interrupt it later. In order to interrupt, you would give a the say that's playing the hold music a signal using the allowSignals parameter. You can then make a web service call using that name and Tropo will stop running that function. If the function has already run and completed, your interrupt request will be ignored. If it has not run yet, it will be queued until the function runs.
+
+					Note: transfer and conference must include the terminator parameter for signaling to work.
+					
+			    </doc>
+			
+					<request>
+	                   <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
+	                   <representation>
+	                       <apigee:payload><![CDATA[
+							{
+							   "value":"exit"
+							}
+	                  ]]></apigee:payload>
+	                   </representation>
+	               </request>				
+			
+				
+			</method>
+		</resource>
+		
 	</resources>
 </application>
