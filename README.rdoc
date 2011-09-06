@@ -10,4 +10,4 @@ These REST API descriptors can be used for services such as Apigee.  REST servic
 You can check out the Apigee demo online at 
 
 * SMSified - https://apigee.com/chris4/embed/console/smsified 
-* Tropo - https://apigee.com/cmatthieu/embed/console/tropo#
+* Tropo - https://apigee.com/cmatthieu/embed/console/tropo
